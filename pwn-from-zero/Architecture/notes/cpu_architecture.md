@@ -20,7 +20,7 @@ _Image from Hack The Box Academy (https://academy.hackthebox.com)_
 ### 💡 4단계로 구성
 | 단계 | 설명 |
 |------|------|
-| Fetch | 다음 명령어의 주소를 IAR에서 가져옴 |
+| Fetch | 다음 명령어의 주소를 Instruction Address Register(IAR)에서 가져옴 |
 | Decode | 이진수 명령어를 해석하여 어떤 연산인지 파악 |
 | Execute | 연산 실행 (ALU 사용) |
 | Store | 결과 값을 목적지에 저장 |
