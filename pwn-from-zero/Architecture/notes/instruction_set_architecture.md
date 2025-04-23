@@ -15,6 +15,15 @@
 
 ISA는 운영체제, 어셈블리, 해킹 실습에서 가장 기본이 되는 핵심 개념이다.
 
+### 실행 흐름
+- 1. Instruction를 Fetch (명령어 읽기)
+- 2. Decode 단계에서 어떤 레지스터(Registers)를 쓸지 판단
+- 3. 메모리 주소(Memory Address)를 통해 RAM 또는 레지스터에서 데이터 접근
+- 4. 데이터 크기(Data Type)에 따라 연산 및 저장 방식 결정
+- 5. ALU 또는 CU가 명령 실행 (Execute), 결과 저장 (Store)
+ 
+![Diagram](../images/diagram.jpg)
+
 ---
 
 ## 2. CISC (Complex Instruction Set Computer)
