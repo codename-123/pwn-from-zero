@@ -25,7 +25,7 @@
 
 ### 서브 레지스터 (하위 비트 접근)
 
-| 비트 크기  | 이름 (rax 기준) |
+| 비트 크기 | 시스템 호출 번호/반환 값 | 
 | ------ | ----------- |
 | 64-bit | rax         |
 | 32-bit | eax         |
@@ -50,8 +50,8 @@ _Image from Hack The Box Academy (https://academy.hackthebox.com)_
 | --------- | ------------------ | ------------- |
 | Immediate | 명령어 내부에 값이 직접 포함됨  | add 2         |
 | Register  | 레지스터가 값을 가지고 있음    | add rax       |
-| Direct    | 명령어에 직접 주소가 지정됨    | call 0x44d0ff |
-| Indirect  | 레지스터나 포인터가 주소를 참조함 | call [rax]    |
+| Direct    | 명령어에 직접 주소가 지정됨    | call 0xffffffffaa8a25ff |
+| Indirect  | 레지스터나 포인터가 주소를 참조함 | call 0x44d000또는call [rax]    |
 | Stack     | 스택의 주소를 사용함        | add rsp       |
 
 > 주소를 어떻게 가져오는지 이해하는 것은 버퍼 오버플로우, ROP 등의 익스플로잇에 매우 중요
