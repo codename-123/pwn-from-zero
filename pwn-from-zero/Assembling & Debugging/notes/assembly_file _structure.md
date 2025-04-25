@@ -75,16 +75,16 @@ message db "Hello World!", 0x0a
 length  equ $-message
 ```
 ### 💡 이 코드가 하는 일:
-- 1. "Hello World!\n"는 총 13바이트
+1. "Hello World!\n"는 총 13바이트
 → message부터 메모리에 차례대로 들어감
 
-- 2. $는 현재 주소 = 즉, "Hello World!\n" 다 저장된 다음 위치
+2. $는 현재 주소 = 즉, "Hello World!\n" 다 저장된 다음 위치
 
-- 3. $ - message
+3. $ - message
 → 끝 주소 - 시작 주소
 → 13 (문자열의 바이트 수!)
 
-- 4. length equ 13
+4. length equ 13
 → length라는 상수에 13을 저장한 것이야
 → 컴파일 타임에 "얘는 13이야!" 라고 결정되는 고정 숫자
 
