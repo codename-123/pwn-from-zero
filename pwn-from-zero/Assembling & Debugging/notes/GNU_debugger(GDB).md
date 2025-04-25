@@ -71,7 +71,7 @@ disas _start
 ## ✅ 요약
 - GDB는 리눅스에서 바이너리 동작을 분석하는 대표 디버깅 툴
 - GEF 플러그인을 활용하면 인터페이스가 더 보기 편해짐
-- `info`, `disas`, `break`, `run`, `next`, `x` 등의 명령어로 프로그램 흐름 추적
+- `info`, `disas` 등의 명령어로 프로그램 흐름 추적
 
 📂 본 문서는 `pwn-from-zero` 리포지토리의 GDB 디버깅 섹션에 해당합니다.
 > 📌 참고 출처: Hack The Box Academy (https://academy.hackthebox.com)
