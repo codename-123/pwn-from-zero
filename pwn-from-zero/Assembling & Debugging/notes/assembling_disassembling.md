@@ -60,6 +60,8 @@ ld ${fileName}.o -o ${fileName}
 - 어셈블 + 링크 + 실행을 한 번에 처리하는 스크립트
 - 사용법: `./assembler.sh helloWorld.s`
 
+- 출력: `Hello HTB Academy!`
+
 ---
 
 ## 🧩 Disassembling (objdump)
