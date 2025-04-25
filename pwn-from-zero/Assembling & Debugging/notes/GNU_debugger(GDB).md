@@ -14,6 +14,8 @@ sudo apt-get install gdb
 ```
 
 ### ➕ GEF 플러그인 설치
+
+- GDB에 GEF를 추가하려면 다음 명령을 사용.
 ```bash
 wget -O ~/.gdbinit-gef.py -q https://gef.blah.cat/py
 echo source ~/.gdbinit-gef.py >> ~/.gdbinit
