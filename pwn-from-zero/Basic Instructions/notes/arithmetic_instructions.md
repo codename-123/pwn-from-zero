@@ -20,7 +20,7 @@ Arithmetic 명령어는 다음 두 가지 유형으로 나눌 수 있음:
 | inc | 값에 1을 더함 | `inc rax` -> `rax += 1` -> `rax = 2` |
 | dec | 값에서 1을 뺌 | `dec rax` -> `rax -= 1` -> `rax = 0` |
 
-### 예제 코드 
+### 예제
 ```assembly
 global _start
 section .text
