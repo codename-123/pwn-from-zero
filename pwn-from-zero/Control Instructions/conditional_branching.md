@@ -57,7 +57,7 @@
 | ZF     | Zero Flag         | 연산 결과가 0이면 1로 설정됨 → `jz`, `jnz` 등에 사용 |
 | SF     | Sign Flag         | 연산 결과가 음수이면 1 → `js`, `jns` 등에 사용        |
 | CF     | Carry Flag        | 부호 없는 연산에서 자리올림 발생 시 1 → `jc`, `jnc`  |
-| OF     | Overflow Flag     | 부호 있는 연산에서 오버플로 발생 시 1 → `jo`, `jno`   |
+| PF     | Parity Flag     | 연산 결과의 하위 8비트(1바이트)에 있는 1의 개수가 짝수면 1, 홀수면 0 → `jp`, `jnp`   |
 
 ---
 
