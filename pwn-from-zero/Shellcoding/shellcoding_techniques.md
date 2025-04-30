@@ -43,7 +43,7 @@ _start:
 변수 없이 문자열을 Stack에 역순으로 저장 후 `rsp`를 문자열 주소로 사용합니다.
 ```nasm
     xor rbx, rbx
-    mov bx, 'y!'
+    mov rbx, 'y!'
     push rbx
     mov rbx, 'B Academ'
     push rbx
