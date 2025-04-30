@@ -141,6 +141,7 @@ initFib:
     ret
 
 printFib:
+    sub rsp, 8
     push rax
     push rbx
     mov rdi, outFormat
@@ -148,14 +149,17 @@ printFib:
     call printf
     pop rbx
     pop rax
+    add rsp, 8
     ret
 
 loopFib:
+    sub rsp, 8
     call printFib
     add rax, rbx
     xchg rax, rbx
     cmp rbx,[userInput]
     js loopFib
+    add rsp, 8
     ret
 
 Exit:
