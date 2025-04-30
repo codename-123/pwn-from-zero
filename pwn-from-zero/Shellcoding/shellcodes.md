@@ -99,12 +99,21 @@ os.chmod(sys.argv[2], stat.S_IEXEC)
 
 ### 🔧 GCC를 통한 Shellcode 실행 (비추천)
 ```c
-int (*ret)() = (int(*)())"\x48\x31\xdb...";
-ret();
+#include <stdio.h>
+
+int main()
+{
+    int (*ret)() = (int (*)()) "\x48\x31\xdb\x66\xbb\...SNIP...\x3c\x40\x30\xff\x0f\x05";
+    ret();
+}
 ```
 ```bash
-$ gcc helloworld.c -o helloworld \
-    -fno-stack-protector -z execstack -Wl,--omagic -g --static
+gcc helloworld.c -o helloworld
+gdb -q helloworld
+```
+```bash
+gcc helloworld.c -o helloworld -fno-stack-protector -z execstack -Wl,--omagic -g --static
+./helloworld
 ```
 
 > 단점: C 코드 내에서 여러 보안 메커니즘을 우회해야 하며, 라이브러리 로딩으로 인한 노이즈 증가
