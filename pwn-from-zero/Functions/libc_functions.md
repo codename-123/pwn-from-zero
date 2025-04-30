@@ -108,7 +108,7 @@ section .data
     inFormat db  "%d", 0x00
 
 section .bss
-    userInput resp 1
+    userInput resq 1
 
 section .text
 _start:
