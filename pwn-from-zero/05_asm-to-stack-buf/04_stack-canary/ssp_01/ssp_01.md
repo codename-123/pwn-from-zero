@@ -320,7 +320,7 @@ void menu() {
 - 만약 입력한 값이 `F`와 일치하면 연산 값 `0` je 활성화
 - 입력한 값이 `F`와 일치하지 않으면  연산 값 `0` je 비활성화
 
-> 추측: **char 0xffffcece[1]; read(0, 0xffffcece, 2); if(0xffffcece != "F") {return 0;} else if {return 0;}**
+> 추측: **read(0, 0xffffcece, 2); if(0xffffcece != "F") {return 0;} else if {return 0;}**
 
 ```asm
 0x80487c6 <main+155>    push   0x804896c
