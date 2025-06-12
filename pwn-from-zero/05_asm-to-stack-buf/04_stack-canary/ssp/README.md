@@ -1,4 +1,4 @@
-# SSP 1 - Stack Canary
+# SSP - Stack Canary
 
 이 프로젝트는 바이너리 분석을 통해 발견한 **Stack Canary 우회 후 버퍼 오버플로우(Buffer Overflow)** 취약점을 기반으로 한 익스플로잇 연습 예제입니다.
 
