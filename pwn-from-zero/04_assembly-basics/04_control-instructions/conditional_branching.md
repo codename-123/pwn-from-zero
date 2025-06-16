@@ -15,7 +15,7 @@
 | `jg`          | A > B  | `if (A > B)`             | ZF == 0 && SF == OF   |
 | `jge`         | A ≥ B  | `if (A >= B)`            | SF == OF              |
 | `jl`          | A < B  | `if (A < B)`             | SF != OF              |
-| `jle`         | A ≤ B  | `if (A <= B)`            | ZF == 1 || SF != OF |
+| `jle`         | A ≤ B  | `if (A <= B)`            | ZF == 1 \|\| SF != OF |
 | `js`          | A < 0  | `if (A is negative)`     | SF == 1               |
 | `jns`         | A ≥ 0  | `if (A is non-negative)` | SF == 0               |
 
@@ -28,7 +28,7 @@
 | `ja`  | A > B | `if (A > B)` unsigned  | CF == 0 && ZF == 0   |
 | `jae` | A ≥ B | `if (A >= B)` unsigned | CF == 0              |
 | `jb`  | A < B | `if (A < B)` unsigned  | CF == 1              |
-| `jbe` | A ≤ B | `if (A <= B)` unsigned | CF == 1 || ZF == 1 |
+| `jbe` | A ≤ B | `if (A <= B)` unsigned | CF == 1 \|\| ZF == 1 |
 
 ---
 
