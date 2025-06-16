@@ -6,18 +6,30 @@
 
 조건 값과 관련된 **Jcc** 명령이 존재하며, `cc`는 조건 코드를 나타낸다.
 
-| 명령 | 조건 | 설명 |
-|:---|:---|:---|
-| jz | Destination = 0 | Destination이 0인 경우 |
-| jnz | Destination ≠ 0 | Destination이 0이 아니면 |
-| js | Destination < 0 | Destination이 음수인 경우 |
-| jns | Destination ≥ 0 | Destination이 0 이상인 경우 |
-| jg | Destination > Source | Destination이 Source보다 크면 |
-| jge | Destination ≥ Source | Destination이 Source보다 크거나 같으면 |
-| jl | Destination < Source | Destination이 Source보다 작으면 |
-| jle | Destination ≤ Source | Destination이 Source보다 작거나 같으면 |
+### 조건 분기표 (Signed 기준)
+
+| 명령            | 조건     | C식 의미                    | 내부 플래그 조건             |
+| ------------- | ------ | ------------------------ | --------------------- |
+| `je` / `jz`   | A == B | `if (A == B)`            | ZF == 1               |
+| `jne` / `jnz` | A ≠ B  | `if (A != B)`            | ZF == 0               |
+| `jg`          | A > B  | `if (A > B)`             | ZF == 0 && SF == OF   |
+| `jge`         | A ≥ B  | `if (A >= B)`            | SF == OF              |
+| `jl`          | A < B  | `if (A < B)`             | SF != OF              |
+| `jle`         | A ≤ B  | `if (A <= B)`            | ZF == 1 || SF != OF |
+| `js`          | A < 0  | `if (A is negative)`     | SF == 1               |
+| `jns`         | A ≥ 0  | `if (A is non-negative)` | SF == 0               |
 
 ---
+
+### 조건 분기표 (Unsigned 기준)
+
+| 명령    | 조건    | C식 의미                  | 플래그 기준               |
+| ----- | ----- | ---------------------- | -------------------- |
+| `ja`  | A > B | `if (A > B)` unsigned  | CF == 0 && ZF == 0   |
+| `jae` | A ≥ B | `if (A >= B)` unsigned | CF == 0              |
+| `jb`  | A < B | `if (A < B)` unsigned  | CF == 1              |
+| `jbe` | A ≤ B | `if (A <= B)` unsigned | CF == 1 || ZF == 1 |
+
 
 ## RFLAGS 레지스터의 플래그
 
@@ -50,14 +62,18 @@
 
 - 이 플래그들은 연산 결과에 따라 1 또는 0으로 설정된다.
 
+---
+
 ### 주요 사용 플래그 정리
 
-| 플래그 | 이름              | 의미 및 사용 예시                                      |
-|--------|-------------------|-------------------------------------------------------|
-| ZF     | Zero Flag         | 연산 결과가 0이면 1로 설정됨 → `jz`, `jnz` 등에 사용 (`je`, `jne` 와 동일) |
-| SF     | Sign Flag         | 연산 결과가 음수이면 1 → `js`, `jns` 등에 사용        |
-| CF     | Carry Flag        | 부호 없는 연산에서 자리올림 발생 시 1 → `jc`, `jnc`  |
-| PF     | Parity Flag     | 연산 결과의 하위 8비트(1바이트)에 있는 1의 개수가 짝수면 1, 홀수면 0 → `jp`, `jnp`   |
+| 플래그  | 이름            | 의미 및 사용 예시                                                      |
+| ---- | ------------- | --------------------------------------------------------------- |
+| `ZF` | Zero Flag     | 연산 결과가 0이면 1 → `je` (`jz`), `jne` (`jnz`)에 사용됨                  |
+| `SF` | Sign Flag     | 연산 결과가 음수이면 1 → `jl`, `jg`, `js`, `jns`에 사용됨                    |
+| `OF` | Overflow Flag | 부호 있는 연산에서 오버플로우 발생 시 1 → `jg`, `jl`, `jge`, `jle` 등에서 사용됨      |
+| `CF` | Carry Flag    | 부호 없는 연산에서 자리올림/언더플로우 발생 시 1 → `ja`, `jb`, `jae`, `jbe` 등에서 사용됨 |
+| `PF` | Parity Flag   | 결과 하위 1바이트의 1의 개수가 **짝수면 1** → `jp`, `jnp` (실전 사용 드묾)           |
+
 
 ---
 
