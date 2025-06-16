@@ -30,6 +30,7 @@
 | `jb`  | A < B | `if (A < B)` unsigned  | CF == 1              |
 | `jbe` | A ≤ B | `if (A <= B)` unsigned | CF == 1 || ZF == 1 |
 
+---
 
 ## RFLAGS 레지스터의 플래그
 
